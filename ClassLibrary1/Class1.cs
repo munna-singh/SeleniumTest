@@ -41,5 +41,11 @@ namespace ClassLibrary1
             Console.WriteLine("Welcome to the C# Station Tutorial!");
         }
 
+        [Test]
+        public void GenericTestCases()
+        {
+            Console.WriteLine(new System.DateTime().ToShortTimeString());
+        }
+
     }
 }
