@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.com.traveledge.testcases.Air
 {
-    [TestFixture]
+   // [TestFixture]
     class Oneway : ExtentReport
     {
         IWebDriver driver;
@@ -101,8 +101,10 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String from = eLib.getExcelData("Air", "B1");
             String to = eLib.getExcelData("Air", "B2");
             String airLines = eLib.getExcelData("Air", "B4");
-         
-            air.searchFlightOneWay(act,from,to, airLines, "2",test);
+            String departDate = eLib.getExcelData("Air", "B3").Replace(" 12:00:00 AM", "");
+
+
+            air.searchFlightOneWay(act,from,to, departDate, airLines, "2",test);
 
            
 
@@ -171,8 +173,9 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String from = eLib.getExcelData("Air", "B1");
             String to = eLib.getExcelData("Air", "B2");
             String airLines = eLib.getExcelData("Air", "B4");
+            String departDate = eLib.getExcelData("Air", "B3").Replace(" 12:00:00 AM","");
 
-            air.searchFlightOneWay(act, from, to, airLines, "2",test);
+            air.searchFlightOneWay(act, from, to, departDate, airLines, "2",test);
           
             flightSearchResult.selectFlighT(act,test);
             quote.quoteIt(test);
@@ -210,6 +213,11 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             logout.logout(test);
            
         }
+        //
+        
+      
+       
+       
        
         [TearDown]
         public void flushReport()

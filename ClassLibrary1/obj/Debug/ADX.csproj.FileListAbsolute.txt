@@ -22,5 +22,6 @@ C:\work\SeleniumTest\ClassLibrary1\bin\Debug\Dapper.xml
 C:\work\SeleniumTest\ClassLibrary1\bin\Debug\nunit.framework.xml
 C:\work\SeleniumTest\ClassLibrary1\bin\Debug\WebDriver.xml
 C:\work\SeleniumTest\ClassLibrary1\bin\Debug\WebDriver.Support.xml
+C:\work\SeleniumTest\ClassLibrary1\obj\Debug\ADX.csprojResolveAssemblyReference.cache
 C:\work\SeleniumTest\ClassLibrary1\obj\Debug\ClassLibrary1.dll
 C:\work\SeleniumTest\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

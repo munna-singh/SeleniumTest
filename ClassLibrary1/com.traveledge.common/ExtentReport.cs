@@ -19,10 +19,16 @@ namespace ClassLibrary1.com.traveledge.common
         public static ExtentReports extent;
         public static ExtentTest test;
 
+        //  [OneTimeSetUp]
+        /// <summary>
+        /// Ectent report starts
+        /// </summary>
+        /// 
+
       //  [OneTimeSetUp]
-      /// <summary>
-      /// Ectent report starts
-      /// </summary>
+
+        [TestFixtureSetUp]
+
         public void StartReport()
         {
             

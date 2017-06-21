@@ -67,8 +67,20 @@ namespace ClassLibrary1.com.traveledge.keywords
         public void checkTicketed(ExtentTest test)
         {
             presenceOfElement(Browser.driver, "//span[@class='label-status label-ticketed' and text()='ticketed']");
+            
             Assert.IsTrue(ticketed.Displayed, "staus is not ticketed");
-            test.Log(Status.Info, "Payment is done / Status is ticketedPayment is processing");
+            if (ticketed.Displayed)
+            {
+                test.Pass("Flight is ticketed");
+                test.Log(Status.Info, "Payment is done / Status is ticketed");
+            }
+            else
+            {
+                test.Fail("ticketed failed");
+                test.Log(Status.Info, "ticketed failed");
+
+            }
+
         }
     }
 }

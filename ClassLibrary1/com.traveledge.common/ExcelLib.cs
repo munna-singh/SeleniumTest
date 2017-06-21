@@ -64,6 +64,9 @@ namespace ClassLibrary1.com.traveledge.common
            // Excel.Range dataBinder1 = (Excel.Range)excelWorksheet.Cells[lastCell.Row + 1, 3]; //row // column
 
             string myData = dataBinder.Value.ToString();
+            excelWorkbook.Close();
+
+            excelApp.Quit();
 
             return myData;
 

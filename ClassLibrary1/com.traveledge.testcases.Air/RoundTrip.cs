@@ -108,8 +108,10 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String from = eLib.getExcelData("Air", "B1");
             String to = eLib.getExcelData("Air", "B2");
             String airLines = eLib.getExcelData("Air", "B4");
+            String departDate = eLib.getExcelData("Air", "B3").Replace(" 12:00:00 AM", "");
+            String returnDate = eLib.getExcelData("Air", "B5").Replace(" 12:00:00 AM", "");
 
-            air.searchFlightRoundTrip(act, from, to, airLines, "2",test);
+            air.searchFlightRoundTrip(act, from, to, departDate, returnDate, airLines, "2",test);
             flightSearchResult.selectFlighT(act,test);
             flightSearchResult.selectFlighT(act, test);
             //Thread.Sleep(5000);
@@ -176,7 +178,12 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String to = eLib.getExcelData("Air", "B2");
             String airLines = eLib.getExcelData("Air", "B4");
 
-            air.searchFlightRoundTrip(act, from, to, airLines, "2",test);
+            // String departDate = Convert.ToDateTime(eLib.getExcelData("Air", "B3")).Date.ToString();
+
+            String departDate = eLib.getExcelData("Air", "B3").Replace(" 12:00:00 AM", "");
+            String returnDate = eLib.getExcelData("Air", "B5").Replace(" 12:00:00 AM", "");
+
+            air.searchFlightRoundTrip(act, from, to, departDate, returnDate, airLines, "2",test);
             flightSearchResult.selectFlighT(act,test);
            
             flightSearchResult.selectFlighT(act,test);

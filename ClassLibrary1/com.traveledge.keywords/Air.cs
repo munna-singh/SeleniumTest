@@ -49,10 +49,12 @@ namespace ClassLibrary1.com.traveledge.keywords
         private IWebElement inventorySourceGDS { get; set; }
 
 
-        public void searchFlightOneWay(Actions act, String fromAir, String toAir, String airLine, String gds, ExtentTest test)
+        public void searchFlightOneWay(Actions act, String fromAir, String toAir, String departDate,String airLine, String gds, ExtentTest test)
         {
             Thread.Sleep(7000);
             newAirQuote.Click();
+            presenceOfElement(Browser.driver, "//label[@class='btn btn-default label-normal one-way-label']");
+
             oneWay.Click();
             from.SendKeys(fromAir);
             Thread.Sleep(4000);
@@ -62,13 +64,19 @@ namespace ClassLibrary1.com.traveledge.keywords
             Thread.Sleep(4000);
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
-            depart.Click();
-            Thread.Sleep(5000);
-            //handleCalanderPoppup();
-            nextMonth.Click(); nextMonth.Click();
-            nextMonth.Click();
-            Thread.Sleep(3000);
-            date.Click();
+
+
+            calanderPopup(departDate, depart);
+            //
+            //depart.Click();
+            //Thread.Sleep(5000);
+            ////handleCalanderPoppup();
+            //nextMonth.Click(); nextMonth.Click();
+            //nextMonth.Click();
+            //Thread.Sleep(3000);
+
+            //
+           // date.Click();
             airlinesAndAlliances.Click();
             airlinesAndAlliances.SendKeys(airLine);
             act.SendKeys(Keys.ArrowDown);
@@ -86,7 +94,7 @@ namespace ClassLibrary1.com.traveledge.keywords
         private IWebElement roundTrip { get; set; }
 
 
-        public void searchFlightRoundTrip(Actions act, String fromAir, String toAir, String airLine, String gds, ExtentTest test)
+        public void searchFlightRoundTrip(Actions act, String fromAir, String toAir,String departDate,String ReturnDate, String airLine, String gds, ExtentTest test)
         {
             Thread.Sleep(7000);
             newAirQuote.Click();
@@ -100,20 +108,10 @@ namespace ClassLibrary1.com.traveledge.keywords
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
 
-            depart.Click();
-            Thread.Sleep(5000);
-            //handleCalanderPoppup();
-            nextMonth.Click(); nextMonth.Click();
-            nextMonth.Click();
-            Thread.Sleep(3000);
-            date.Click();
 
-            Return.Click();
-            nextMonth.Click(); nextMonth.Click();
-            nextMonth.Click(); nextMonth.Click();
-
-            Thread.Sleep(3000);
-            date.Click();
+            calanderPopup(departDate, depart);
+            calanderPopup(ReturnDate, Return);
+          
             airlinesAndAlliances.Click();
             airlinesAndAlliances.SendKeys(airLine);
             act.SendKeys(Keys.ArrowDown);
@@ -136,7 +134,7 @@ namespace ClassLibrary1.com.traveledge.keywords
 
 
         //MutiCity
-        [FindsBy(How = How.XPath, Using = "//label[@class='btn btn-default label-normal multi-city-label active']")]
+        [FindsBy(How = How.XPath, Using = "//label[@class='btn btn-default label-normal one-way-label']/following-sibling::label")]
         private IWebElement multiCity { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@name='airport-from-1']")]
@@ -157,10 +155,21 @@ namespace ClassLibrary1.com.traveledge.keywords
         [FindsBy(How = How.XPath, Using = "//input[@name='airport-to-3']")]
         private IWebElement to3 { get; set; }
 
-        public void searchFlightMultiCity(Actions act, String destination1, String destination2, String destination3, String airLine, String gds, ExtentTest test)
+        [FindsBy(How = How.XPath, Using = "(//input[@name='date-1'])[1]")]
+        private IWebElement depart1 { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "(//input[@name='date-2'])[1]")]
+        private IWebElement depart2 { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "(//input[@name='date-3'])[1]")]
+        private IWebElement depart3 { get; set; }
+
+        public void searchFlightMultiCity(Actions act, String destination1,String departDate1, String destination2,String departDate2, String destination3, String departDate3, String airLine, String gds, ExtentTest test)
         {
-            Thread.Sleep(7000);
+            presenceOfElement(Browser.driver, "//div[text()='New Air ']");
             newAirQuote.Click();
+            presenceOfElement(Browser.driver, "//label[@class='btn btn-default label-normal one-way-label']/following-sibling::label");
+
             multiCity.Click();
 
             //segment 1
@@ -172,14 +181,8 @@ namespace ClassLibrary1.com.traveledge.keywords
             Thread.Sleep(4000);
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
-
-            depart.Click();
-            Thread.Sleep(5000);
-            //handleCalanderPoppup();
-            nextMonth.Click(); nextMonth.Click();
-            Thread.Sleep(3000);
-            date.Click();
-
+           
+            calanderPopup(departDate1, depart1);
 
             //segment 2
             //from2.SendKeys(destination2);
@@ -190,14 +193,7 @@ namespace ClassLibrary1.com.traveledge.keywords
             Thread.Sleep(4000);
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
-
-            depart.Click();
-            Thread.Sleep(5000);
-            //handleCalanderPoppup();
-            nextMonth.Click(); nextMonth.Click();
-            nextMonth.Click();
-            Thread.Sleep(3000);
-            date.Click();
+            calanderPopup(departDate2, depart2);
 
             //segment 3
             //from3.SendKeys(destination3);
@@ -208,16 +204,9 @@ namespace ClassLibrary1.com.traveledge.keywords
             Thread.Sleep(4000);
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
+            calanderPopup(departDate3, depart3);
 
-            depart.Click();
-            Thread.Sleep(5000);
-            //handleCalanderPoppup();
-            nextMonth.Click(); nextMonth.Click();
-            nextMonth.Click(); nextMonth.Click();
-            Thread.Sleep(3000);
-            date.Click();
 
-                      
             airlinesAndAlliances.Click();
             airlinesAndAlliances.SendKeys(airLine);
             act.SendKeys(Keys.ArrowDown);
@@ -226,6 +215,18 @@ namespace ClassLibrary1.com.traveledge.keywords
             flightsearch.Click();
             waitForPageToLoad();
             test.Log(Status.Info, "Got the MultiCity trip flight result");
+
+        }
+        public void calanderPopup(String date,IWebElement wb)
+         {
+
+            wb.Click();
+            Thread.Sleep(1000);
+            wb.SendKeys(date);
+            Thread.Sleep(1000);
+            wb.SendKeys(Keys.Enter);
+            Thread.Sleep(1000);
+
 
         }
 
