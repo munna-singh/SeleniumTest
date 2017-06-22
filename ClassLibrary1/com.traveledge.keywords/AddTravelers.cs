@@ -78,23 +78,9 @@ namespace ClassLibrary1.com.traveledge.keywords
             addTraveler.SendKeys(travellerName);
             Thread.Sleep(5000);
             searchClient.Click();
-           // act.SendKeys(Keys.Enter).Perform();
             selectTraveler.Click();
            
-
-            //cancelAddTravelerPopUp.Click();
-
-            //while (clientSearchResult.Displayed==true)
-            //    {
-            //        if (clientSearchResult.Displayed || clientSearchResult.Enabled)
-            //        {
-            //        cancelAddTravelerPopUp.Click();
-            //        }
-            //        else
-            //        {
-            //        break;
-            //        }
-            //    }
+            
             
           
             Thread.Sleep(5000);

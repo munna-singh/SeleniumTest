@@ -231,18 +231,7 @@ namespace ClassLibrary1.com.traveledge.keywords
         }
 
 
-        //    public void handleCalanderPoppup(String date, String month, String year)
-        //    {
-
-        //        String monthXpath = "(//td[@colspan='7'])[1]/span[text()='" + month + "']";
-
-
-
-        //          [FindsBy(How = How.XPath, Using = monthXpath);
-        //          public IWebElement month { get; set; }
-        //}
-        //}
-
+       
 
 
 

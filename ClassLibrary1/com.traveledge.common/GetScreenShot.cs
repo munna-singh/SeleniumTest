@@ -24,13 +24,6 @@ namespace ClassLibrary1.com.traveledge.common
         public static string Capture(IWebDriver driver, string screenShotName)
         {
 
-
-
-            //string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            //string actualPath = path.Substring(0, path.LastIndexOf("bin"));
-            //string projectPath = new Uri(actualPath).LocalPath;
-            //string reportPath = projectPath + "Reports\\" + currentDate + "ADX.html";
-
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             Screenshot screenshot = ts.GetScreenshot();
             string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;

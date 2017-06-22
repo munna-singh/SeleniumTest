@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.com.traveledge.testcases.Air
 {
-  //  [TestFixture]
+    [TestFixture]
     class Multicity : ExtentReport
     {
         IWebDriver driver;
@@ -32,11 +32,7 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
         ExcelLib eLib = new ExcelLib();
 
 
-        //[OneTimeSetUp]
-        //public void startReport()
-        //{
-        //    StartReport();
-        //}
+      
 
         [SetUp]
         public void configureBeforeClass()
@@ -222,18 +218,11 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
         {
 
             getResult();
-            //   extent.Flush();
+           
 
 
         }
 
-        [OneTimeTearDown]
-        public void GenerateReport()
-        {
-
-        }
-
-        //searchFlightOneWay
-
+      
     }
 }

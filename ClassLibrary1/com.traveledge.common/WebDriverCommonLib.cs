@@ -12,23 +12,6 @@ namespace ClassLibrary1.com.traveledge.common
 {
     public class WebDriverCommonLib
     {
-
-        //public static Func<IWebElement, ReadOnlyCollection<IWebElement>> PresenceOfAllElementsLocatedBy(IWebElement element)
-        //{
-        //    return (driver) =>
-        //    {
-        //        try
-        //        {
-        //            IWebElement elements = element;
-        //            return elements.Any()? elements : null;
-        //        }
-        //        catch (StaleElementReferenceException)
-        //        {
-        //            return null;
-        //        }
-        //    };
-
-        //}
         public void presenceOfElement(IWebDriver driver, String locator)
         {
             Thread.Sleep(2000);

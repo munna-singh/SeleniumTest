@@ -148,12 +148,12 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String zip = eLib.getExcelData("Payment", "B11");
 
             payment.makePayment(firstNameForPayment, lastNameForPayment, cardNumber, expMonth, expYear, vcc, address, city, country, state, zip,test);
-            //Thread.Sleep(120000);
+           
             tsp.checkTicketed(test);
-           // Thread.Sleep(5000);
+        
             logout.logout(test);
             Thread.Sleep(5000);
-          //  test.Pass("Assertion passed");
+          
         }
 
         /// <summary>
@@ -233,16 +233,11 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
         public void flushReport()
         {
 
-            getResult();
-       
+            getResult();      
 
 
         }
-
-       
-
-        //searchFlightOneWay
-
+        
     }
 }
 

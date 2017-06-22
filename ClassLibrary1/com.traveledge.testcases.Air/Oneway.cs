@@ -26,7 +26,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.com.traveledge.testcases.Air
 {
-   // [TestFixture]
+    [TestFixture]
     class Oneway : ExtentReport
     {
         IWebDriver driver;
@@ -42,12 +42,6 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
         Logout logout;
         ExcelLib eLib = new ExcelLib();
 
-
-        [OneTimeSetUp]
-        public void startReport()
-        {
-            StartReport();
-        }
 
         [SetUp]
         public void configureBeforeClass()
@@ -213,10 +207,6 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             logout.logout(test);
            
         }
-        //
-        
-      
-       
        
        
         [TearDown]

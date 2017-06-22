@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.com.traveledge.common
 {
+   
     public class ExtentReport
     {
         public static ExtentHtmlReporter htmlReporter;
@@ -25,44 +26,43 @@ namespace ClassLibrary1.com.traveledge.common
         /// </summary>
         /// 
 
-      //  [OneTimeSetUp]
+        private static bool  _isExecutedFirst = false;
 
-        [TestFixtureSetUp]
+        //[TestFixtureSetUp]
+        [OneTimeSetUp]
 
         public void StartReport()
         {
             
-            string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            string actualPath = path.Substring(0, path.LastIndexOf("bin"));
-            string projectPath = new Uri(actualPath).LocalPath;
-            string reportPath = projectPath + "Reports\\" + getDateTime() + "ADX.html";
+                if (!_isExecutedFirst)
+                {
+
+                    string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+                    string actualPath = path.Substring(0, path.LastIndexOf("bin"));
+                    string projectPath = new Uri(actualPath).LocalPath;
+                    string reportPath = projectPath + "Reports\\" + getDateTime() + "ADX.html";
+                    htmlReporter = new ExtentHtmlReporter(@reportPath);
+                    htmlReporter.Configuration().Theme = Theme.Dark;
+                    htmlReporter.Configuration().DocumentTitle = "ADXDocument";
+                    htmlReporter.Configuration().ReportName = "ADX_Report_Pritam";
+                    extent = new ExtentReports();
+                    extent.AttachReporter(htmlReporter);
+                    extent.AddSystemInfo("OS", "Windows");
+                    extent.AddSystemInfo("Host Name", "CI");
+                    extent.AddSystemInfo("Environment", "QA");
+                    extent.AddSystemInfo("User Name", "Pritam");
+
+                    _isExecutedFirst = true;
+                }
+                //else
+                //{
+                //    //throw Exception = "dfgd";
+                //    throw new Exception("Method executed before");
+                //}
 
 
-            //htmlReporter = new ExtentHtmlReporter(@reportPath);
-            //C:\Users\pritam\Documents\Visual Studio 2017\Projects\seleniumDemo\ClassLibrary1\Reports
-            htmlReporter = new ExtentHtmlReporter(@reportPath);
-            htmlReporter.Configuration().Theme = Theme.Dark;
-
-            htmlReporter.Configuration().DocumentTitle = "ADXDocument";
-
-            htmlReporter.Configuration().ReportName = "ADX_Report_Pritam";
-
-
-
-         //   htmlReporter.Configuration().JS = "$('.brand-logo').text('').append('<img src=D:\\Users\\jloyzaga\\Documents\\FrameworkForJoe\\FrameworkForJoe\\Capgemini_logo_high_res-smaller-2.jpg>')";
-
-
-          
-
-            extent = new ExtentReports();
-            extent.AttachReporter(htmlReporter);
-
-
-            extent.AddSystemInfo("OS", "Windows");
-            extent.AddSystemInfo("Host Name", "CI");
-            extent.AddSystemInfo("Environment", "QA");
-            extent.AddSystemInfo("User Name", "Pritam");
-
+            
+            
             
         }
 
@@ -78,32 +78,7 @@ namespace ClassLibrary1.com.traveledge.common
 
         }
 
-        // [TearDown]
-        //public void getResult(ITestResult result)
-        //{
-        //    if (result.ResultState == ResultState.Failure)
-        //    {
-        //        // Take screen shot of the curent page
-        //        // GetScreenShot.GetEntereScreenshot(Browser.driver, "screenShotName");
-        //        test.Log(Status.Fail, MarkupHelper.CreateLabel(result.Name + " Test case FAILED due to below issues:", ExtentColor.Red));
-        //        test.Fail(result.Message);
-        //       // test.Fail("Snapshot below: " + test.AddScreenCaptureFromPath(screenShotPath));
-        //    }
-        //    else if (result.ResultState == ResultState.Success)
-        //    {
-        //        test.Log(Status.Pass, MarkupHelper.CreateLabel(result.Name + " Test Case PASSED", ExtentColor.Green));
-        //    }
-        //    else
-        //    {
-        //        test.Log(Status.Skip, MarkupHelper.CreateLabel(result.Name + " Test Case SKIPPED", ExtentColor.Orange));
-        //        test.Skip($"{this.GetType().Name}: Error happened : {result.Message}");
-        //    }
-        //    extent.Flush();
-        //}
-
-            /// <summary>
-            /// Write into extent report according test status
-            /// </summary>
+        
         public void getResult()
         {
             TestStatus s = TestContext.CurrentContext.Result.Outcome.Status;
@@ -119,7 +94,7 @@ namespace ClassLibrary1.com.traveledge.common
                 string screenShotPath = GetScreenShot.Capture(Browser.driver, getDateTime());
 
                 // GetScreenShot.GetEntereScreenshot(Browser.driver, "screenShotName");
-                test.Log(Status.Fail, MarkupHelper.CreateLabel(TestContext.CurrentContext + " Test case FAILED due to below issues:", ExtentColor.Red));
+                test.Log(Status.Fail, MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name + " Test case FAILED due to below issues:", ExtentColor.Red));
                 test.Fail(TestContext.CurrentContext.Result.Message);
 
                 test.Log(Status.Fail, stackTrace + errorMessage);
@@ -129,13 +104,13 @@ namespace ClassLibrary1.com.traveledge.common
             }
             else if (status == TestStatus.Passed)
             {
-                test.Log(Status.Pass, MarkupHelper.CreateLabel(TestContext.CurrentContext + " Test Case PASSED", ExtentColor.Green));
+                test.Log(Status.Pass, MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name + " Test Case PASSED", ExtentColor.Green));
             }
-            //else
-            //{
-            //    test.Log(Status.Skip, MarkupHelper.CreateLabel(result.Name + " Test Case SKIPPED", ExtentColor.Orange));
-            //    test.Skip($"{this.GetType().Name}: Error happened : {result.Message}");
-            //}
+            else
+            {
+                test.Log(Status.Skip, MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name + " Test Case SKIPPED", ExtentColor.Orange));
+                test.Skip(TestContext.CurrentContext.Test.FullName);
+            }
 
             //Flush all status into Report
             extent.Flush();
