@@ -74,16 +74,17 @@ namespace ClassLibrary1.com.traveledge.keywords
         public void addTravelers(Actions act,String travellerName, String Title, String firstname, String lastname, String dT, String mN, String yR, String nationaliTy,ExtentTest test)
         {
 
-            Thread.Sleep(5000);
+            presenceOfElementUsingID(Browser.driver, "clientSearch");
+            //Thread.Sleep(5000);
             addTraveler.SendKeys(travellerName);
-            Thread.Sleep(5000);
+            // Thread.Sleep(5000); 
+            presenceOfElement(Browser.driver, ".//*[@id='mainContent']/div[2]/div/div/div[2]/div[1]/div/div/div/div/div/form/div[3]/button");
+
             searchClient.Click();
             selectTraveler.Click();
-           
-            
-            
-          
-            Thread.Sleep(5000);
+
+            presenceOfElement(Browser.driver, "//select[@name='Title']");
+
             selectFromDropdown(title, Title);
             firstName.SendKeys(firstname);
             lastName.SendKeys(lastname);
@@ -106,9 +107,12 @@ namespace ClassLibrary1.com.traveledge.keywords
         public void verifyTravelersLegalNames(ExtentTest test)
         {
 
-            Thread.Sleep(10000);
-		    verified.Click();
-		    Continue.Click();
+            presenceOfElement(Browser.driver, "//input[@class='traveler-verified']");
+            verified.Click();
+
+            presenceOfElement(Browser.driver, "//button[text()='Continue']");
+
+            Continue.Click();
             test.Log(Status.Info, "traveler name verified");
             test.Log(Status.Info, "Booking is done");
 

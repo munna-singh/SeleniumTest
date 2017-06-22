@@ -29,6 +29,7 @@ namespace ClassLibrary1.com.traveledge.common
         private static bool  _isExecutedFirst = false;
 
         //[TestFixtureSetUp]
+
         [OneTimeSetUp]
 
         public void StartReport()
@@ -54,14 +55,7 @@ namespace ClassLibrary1.com.traveledge.common
 
                     _isExecutedFirst = true;
                 }
-                //else
-                //{
-                //    //throw Exception = "dfgd";
-                //    throw new Exception("Method executed before");
-                //}
-
-
-            
+                        
             
             
         }
@@ -100,7 +94,7 @@ namespace ClassLibrary1.com.traveledge.common
                 test.Log(Status.Fail, stackTrace + errorMessage);
                 test.Log(Status.Fail, "Snapshot below: " + test.AddScreenCaptureFromPath(screenShotPath));
 
-
+               .
             }
             else if (status == TestStatus.Passed)
             {

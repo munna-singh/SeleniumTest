@@ -35,6 +35,9 @@ namespace ClassLibrary1.com.traveledge.common
                 options.AddArgument("--disable-default-apps");
                 options.AddArgument("test-type=browser");
                 options.AddArgument("disable-infobars");
+                options.AddUserProfilePreference("credentials_enable_service", false);
+                options.AddUserProfilePreference("profile.password_manager_enabled", false);
+
                 WebDriverCommonLib wlb = new WebDriverCommonLib();
                 driver = new ChromeDriver(options);
                 wlb.waitForPageToLoad();

@@ -8,8 +8,6 @@
 //Jira Link:   if available
 //=====================================================================================
 
-
-
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.MarkupUtils;
 using ClassLibrary1.com.traveledge.common;

@@ -14,10 +14,17 @@ namespace ClassLibrary1.com.traveledge.common
     {
         public void presenceOfElement(IWebDriver driver, String locator)
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(180));
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(locator)));
-            Thread.Sleep(3000);
+            Thread.Sleep(2000);
+        }
+        public void presenceOfElementUsingID(IWebDriver driver, String locator)
+        {
+            Thread.Sleep(1000);
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(180));
+            wait.Until(ExpectedConditions.ElementIsVisible(By.Id(locator)));
+            Thread.Sleep(2000);
         }
         public void waitForPageToLoad()
         {

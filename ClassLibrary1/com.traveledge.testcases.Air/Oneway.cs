@@ -97,20 +97,12 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String airLines = eLib.getExcelData("Air", "B4");
             String departDate = eLib.getExcelData("Air", "B3").Replace(" 12:00:00 AM", "");
 
-
             air.searchFlightOneWay(act,from,to, departDate, airLines, "2",test);
-
-           
-
             flightSearchResult.selectFlighT(act,test);
-           
             quote.quoteIt(test);
-            
-            
             tsp.ClickOnItenaryBook(test);
             reprice.rePriceBook(test);
            
-
             String travelerName = eLib.getExcelData("Client Traveler", "B1");
             String title = eLib.getExcelData("Add Traveller", "B1");
             String firstName = eLib.getExcelData("Add Traveller", "B2");
@@ -122,7 +114,6 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             
             addTravelers.addTravelers(act, travelerName, title, firstName, lastName,date, month, year, nationality,test);
             addTravelers.verifyTravelersLegalNames(test);
-            
             tsp.ClickOnTicketFlight(test);
           
             String firstNameForPayment = eLib.getExcelData("Payment", "B1");
@@ -138,8 +129,6 @@ namespace ClassLibrary1.com.traveledge.testcases.Air
             String zip = eLib.getExcelData("Payment", "B11");
 
             payment.makePayment(firstNameForPayment,lastNameForPayment,cardNumber,expMonth,expYear,vcc,address,city,country,state,zip,test);
-          
-           
             tsp.checkTicketed(test);
             
             logout.logout(test);
