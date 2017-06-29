@@ -94,7 +94,7 @@ namespace ClassLibrary1.com.traveledge.common
                 test.Log(Status.Fail, stackTrace + errorMessage);
                 test.Log(Status.Fail, "Snapshot below: " + test.AddScreenCaptureFromPath(screenShotPath));
 
-               .
+               
             }
             else if (status == TestStatus.Passed)
             {
