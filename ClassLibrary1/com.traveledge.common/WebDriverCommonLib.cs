@@ -19,7 +19,7 @@ namespace ClassLibrary1.com.traveledge.common
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath(locator)));
             Thread.Sleep(2000);
         }
-        public void presenceOfElementUsingID(IWebDriver driver, String locator)
+        public void presenceOfElementUsingId(IWebDriver driver, String locator)
         {
             Thread.Sleep(1000);
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(180));
@@ -95,6 +95,19 @@ namespace ClassLibrary1.com.traveledge.common
         {
             SelectElement s = new SelectElement(wb);
             s.SelectByValue(elementTobeClicked);
+        }
+        //working with calander
+        public void calanderPopup(String date, IWebElement wb)
+        {
+
+            wb.Click();
+            Thread.Sleep(1000);
+            wb.SendKeys(date);
+            Thread.Sleep(1000);
+            wb.SendKeys(Keys.Enter);
+            Thread.Sleep(1000);
+
+
         }
 
     }

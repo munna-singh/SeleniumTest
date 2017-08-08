@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ClassLibrary1.com.traveledge.keywords
 {
-    class TSP: WebDriverCommonLib
+    class TSP : WebDriverCommonLib
     {
 
         public TSP()
@@ -67,7 +67,7 @@ namespace ClassLibrary1.com.traveledge.keywords
         public void checkTicketed(ExtentTest test)
         {
             presenceOfElement(Browser.driver, "//span[@class='label-status label-ticketed' and text()='ticketed']");
-            
+
             Assert.IsTrue(ticketed.Displayed, "staus is not ticketed");
             if (ticketed.Displayed)
             {
@@ -78,6 +78,85 @@ namespace ClassLibrary1.com.traveledge.keywords
             {
                 test.Fail("ticketed failed");
                 test.Log(Status.Info, "ticketed failed");
+
+            }
+
+        }
+
+        [FindsBy(How = How.XPath, Using = "//span[@class='label-status label-booked' and text()='booked']")]
+        private IWebElement booked { get; set; }
+
+       
+        public void checkBookStatus(ExtentTest test)
+        {
+            presenceOfElement(Browser.driver, "//span[@class='label-status label-booked' and text()='booked']");
+
+            Assert.IsTrue(booked.Displayed, "staus is not booked");
+            if (booked.Displayed)
+            {
+                test.Pass("itineraries is booked");
+                test.Log(Status.Info, "Status is booked");
+            }
+            else
+            {
+                test.Fail("booking failed");
+                test.Log(Status.Info, "booking failed");
+
+            }
+
+        }
+
+        //TSP for Cruise 
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'View Trip Services Page')]")]
+        private IWebElement tspCruise { get; set; }
+
+        public void ClickOnTripServicesPageButtonCruise(ExtentTest test)
+        {
+            tspCruise.Click();
+            test.Log(Status.Info, "Land on TSP for cruise");
+        }
+
+        //TSP for  planning fee
+
+        [FindsBy(How = How.XPath, Using = "//input[contains(@id,'traveling')and @type = 'checkbox']")]
+        private IWebElement isTravelingCheckBox { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Save Traveler Changes')]")]
+        private IWebElement saveTravelerChanges { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//button[contains(text(),'Payment')]")]
+        private IWebElement payment { get; set; }    
+
+        public void saveTraveler(ExtentTest test)
+        {
+            isTravelingCheckBox.Click();
+            presenceOfElement(Browser.driver, "//button[contains(text(),'Save Traveler Changes')]");
+
+            saveTravelerChanges.Click();
+            test.Log(Status.Info, "traveler changes saved and going for payment");
+            presenceOfElement(Browser.driver, "//button[contains(text(),'Payment')]");
+
+            payment.Click();
+            waitForPageToLoad();
+        }
+
+        [FindsBy(How = How.XPath, Using = "//span[contains(@class,'label-paid') and text()='paid']")]
+        private IWebElement paid { get; set; }
+
+        public void checkPaidStatusPlanningFee(ExtentTest test)
+        {
+            presenceOfElement(Browser.driver, "//span[contains(@class,'label-paid') and text()='paid']");
+
+            Assert.IsTrue(paid.Displayed, "staus is not ticketed");
+            if (paid.Displayed)
+            {
+                test.Pass("planning fee is paid");
+                test.Log(Status.Info, "Payment is done / Status is paid");
+            }
+            else
+            {
+                test.Fail("payment failed");
+                test.Log(Status.Info, "planning fee payment failed");
 
             }
 

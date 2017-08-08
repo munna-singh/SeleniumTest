@@ -60,6 +60,9 @@ namespace ClassLibrary1.com.traveledge.keywords
         [FindsBy(How = How.Id, Using = "payAndTicket")]
         private IWebElement payAndTicket { get; set; }
 
+        [FindsBy(How = How.Id, Using = "pay")]
+        private IWebElement pay { get; set; }
+
         public void makePayment(String firstName,String lastName,String CardNumber,String expMonth,String expYear,String verificationCode,String Address,String City,String Country,String State,String Zip,ExtentTest test)
         {
 
@@ -81,7 +84,21 @@ namespace ClassLibrary1.com.traveledge.keywords
             {
                 noInvoiceAddressUseAddressEnteredHere.Click();
             }
-            payAndTicket.Click();
+            try
+            {
+                payAndTicket.Click();
+            }
+            catch(Exception e)
+            {
+                presenceOfElementUsingId(Browser.driver, "pay");
+
+
+                pay.Click();
+
+            }
+           
+           
+            
             waitForPageToLoad();
            // Thread.Sleep(120000);
             test.Log(Status.Info, "Payment is processing");

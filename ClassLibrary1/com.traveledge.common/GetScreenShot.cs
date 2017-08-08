@@ -29,7 +29,7 @@ namespace ClassLibrary1.com.traveledge.common
             string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
             string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + "ErrorScreenshots\\" + screenShotName + ".png";
             string localpath = new Uri(finalpth).LocalPath;
-            screenshot.SaveAsFile(localpath, ImageFormat.Png);
+            screenshot.SaveAsFile(localpath,ImageFormat.Png);
             return localpath;
         }
 

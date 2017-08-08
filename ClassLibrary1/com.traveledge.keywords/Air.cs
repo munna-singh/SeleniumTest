@@ -33,10 +33,10 @@ namespace ClassLibrary1.com.traveledge.keywords
         [FindsBy(How = How.XPath, Using = "//input[@name='airport-to-1']")]
         private IWebElement to { get; set; }
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='air']/div/div[2]/div/div/div/form/div[2]/div/div[1]/div[2]/div[1]/div/div[1]/div/div/input")]
+        [FindsBy(How = How.XPath, Using = "(//input[@name='date-1'])[1]")]
         private IWebElement depart { get; set; }
 
-        [FindsBy(How = How.XPath, Using = ".//*[@id='air']/div/div[2]/div/div/div/form/div[2]/div/div[2]/div/div/div/div[1]/div/div[1]/div/div/input")]
+        [FindsBy(How = How.XPath, Using = "(//input[@name='date-2'])[1]")]
         private IWebElement Return { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//button[@class='btn btn-primary btn-search-airfare']")]
@@ -60,23 +60,12 @@ namespace ClassLibrary1.com.traveledge.keywords
             Thread.Sleep(4000);
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
+
             to.SendKeys(toAir);
             Thread.Sleep(4000);
             act.SendKeys(Keys.ArrowDown);
             act.SendKeys(Keys.Enter).Perform();
-
-
             calanderPopup(departDate, depart);
-            //
-            //depart.Click();
-            //Thread.Sleep(5000);
-            ////handleCalanderPoppup();
-            //nextMonth.Click(); nextMonth.Click();
-            //nextMonth.Click();
-            //Thread.Sleep(3000);
-
-            //
-           // date.Click();
             airlinesAndAlliances.Click();
             airlinesAndAlliances.SendKeys(airLine);
             act.SendKeys(Keys.ArrowDown);
@@ -217,18 +206,7 @@ namespace ClassLibrary1.com.traveledge.keywords
             test.Log(Status.Info, "Got the MultiCity trip flight result");
 
         }
-        public void calanderPopup(String date,IWebElement wb)
-         {
-
-            wb.Click();
-            Thread.Sleep(1000);
-            wb.SendKeys(date);
-            Thread.Sleep(1000);
-            wb.SendKeys(Keys.Enter);
-            Thread.Sleep(1000);
-
-
-        }
+        
 
 
        

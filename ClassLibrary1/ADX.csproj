@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="com.traveedge.testcases.Cruise\Cruise.cs" />
     <Compile Include="com.traveledge.common\Browser.cs" />
     <Compile Include="com.traveledge.common\ExcelLib.cs" />
     <Compile Include="com.traveledge.common\ExtentReport.cs" />
@@ -70,16 +71,23 @@
     <Compile Include="com.traveledge.common\WebDriverCommonLib.cs" />
     <Compile Include="com.traveledge.keywords\AddTravelers.cs" />
     <Compile Include="com.traveledge.keywords\Air.cs" />
+    <Compile Include="com.traveledge.keywords\Cruise.cs" />
+    <Compile Include="com.traveledge.keywords\CruiseCabinSelector.cs" />
+    <Compile Include="com.traveledge.keywords\CruiseSearchResultPage.cs" />
+    <Compile Include="com.traveledge.keywords\CruiseTrvelerDetails.cs" />
     <Compile Include="com.traveledge.keywords\FlightSearchResult.cs" />
     <Compile Include="com.traveledge.keywords\Login.cs" />
     <Compile Include="com.traveledge.keywords\Logout.cs" />
     <Compile Include="com.traveledge.keywords\Payment.cs" />
+    <Compile Include="com.traveledge.keywords\InvoiceTool.cs" />
+    <Compile Include="com.traveledge.keywords\PlanningFeeFillDetails.cs" />
     <Compile Include="com.traveledge.keywords\Quote.cs" />
     <Compile Include="com.traveledge.keywords\RepriceBook.cs" />
     <Compile Include="com.traveledge.keywords\TSP.cs" />
     <Compile Include="com.traveledge.testcases.Air\Multicity.cs" />
     <Compile Include="com.traveledge.testcases.Air\Oneway.cs" />
     <Compile Include="com.traveledge.testcases.Air\RoundTrip.cs" />
+    <Compile Include="com.traveledge.testcases.PlanningFee\PlanningFee.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

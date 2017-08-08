@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace ClassLibrary1.com.traveledge.keywords
 {
   public class AddTravelers : WebDriverCommonLib
-    {
+  {
 
         public AddTravelers()
         {
@@ -74,7 +74,7 @@ namespace ClassLibrary1.com.traveledge.keywords
         public void addTravelers(Actions act,String travellerName, String Title, String firstname, String lastname, String dT, String mN, String yR, String nationaliTy,ExtentTest test)
         {
 
-            presenceOfElementUsingID(Browser.driver, "clientSearch");
+            presenceOfElementUsingId(Browser.driver, "clientSearch");
             //Thread.Sleep(5000);
             addTraveler.SendKeys(travellerName);
             // Thread.Sleep(5000); 
@@ -98,6 +98,20 @@ namespace ClassLibrary1.com.traveledge.keywords
             test.Log(Status.Info, "Traveler Name is added ,Going for Verification");
         }
 
+        [FindsBy(How = How.XPath, Using = "//button[contains(@class,'clientsearch')]")]
+        private IWebElement clientSearchButtonPF { get; set; }
+
+        // add Traveler Planning Fee
+        public void addTravellerPlanningFee(String travellerName, ExtentTest test)
+        {
+            presenceOfElementUsingId(Browser.driver, "clientSearch");
+            addTraveler.SendKeys(travellerName);
+            presenceOfElement(Browser.driver, "//button[contains(@class,'clientsearch')]");
+            clientSearchButtonPF.Click();
+            selectTraveler.Click();
+            test.Log(Status.Info, "Traveler Name is selected for planning fee");
+        }
+
         [FindsBy(How = How.XPath, Using = "//input[@class='traveler-verified']")]
         private IWebElement verified { get; set; }
 
@@ -117,5 +131,5 @@ namespace ClassLibrary1.com.traveledge.keywords
             test.Log(Status.Info, "Booking is done");
 
         }
-}
+  }
 }
